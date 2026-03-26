@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@theme {
+  --color-neon-cyan: #00f3ff;
+  --color-neon-magenta: #ff00ff;
+  --color-neon-green: #00ff00;
+  --color-neon-yellow: #ffff00;
+}
+
+body {
+  background-color: #050505;
+  color: #ffffff;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.neon-border-cyan {
+  border: 1px solid var(--color-neon-cyan);
+  box-shadow: 0 0 10px var(--color-neon-cyan), inset 0 0 10px var(--color-neon-cyan);
+}
+
+.neon-border-magenta {
+  border: 1px solid var(--color-neon-magenta);
+  box-shadow: 0 0 10px var(--color-neon-magenta), inset 0 0 10px var(--color-neon-magenta);
+}
+
+.neon-border-green {
+  border: 1px solid var(--color-neon-green);
+  box-shadow: 0 0 10px var(--color-neon-green), inset 0 0 10px var(--color-neon-green);
+}
+
+.neon-border-yellow {
+  border: 1px solid var(--color-neon-yellow);
+  box-shadow: 0 0 10px var(--color-neon-yellow), inset 0 0 10px var(--color-neon-yellow);
+}
+
+.neon-text-cyan {
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 10px var(--color-neon-cyan), 0 0 20px var(--color-neon-cyan);
+}
+
+.neon-text-magenta {
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 10px var(--color-neon-magenta), 0 0 20px var(--color-neon-magenta);
+}
+
+.neon-text-green {
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 10px var(--color-neon-green), 0 0 20px var(--color-neon-green);
+}
+
+.neon-text-yellow {
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 10px var(--color-neon-yellow), 0 0 20px var(--color-neon-yellow);
+}
+
+/* Noise Background for Granular Effect */
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.animate-noise {
+  animation: noise-shift 0.15s infinite steps(2);
+}
+
+@keyframes noise-shift {
+  0% { background-position: 0 0; }
+  100% { background-position: 10px 10px; }
+}
+
+/* Glittery Shine on the Icon */
+.shine-effect {
+  animation: shine 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes shine {
+  0% { filter: drop-shadow(0 0 2px var(--color-neon-yellow)) brightness(1); }
+  100% { filter: drop-shadow(0 0 15px var(--color-neon-yellow)) drop-shadow(0 0 5px #fff) brightness(1.4); }
+}
+
+/* Granular Attraction (particles pulling in) */
+.granular-attraction {
+  position: relative;
+}
+.granular-attraction::before,
+.granular-attraction::after {
+  content: '';
+  position: absolute;
+  inset: -15px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, var(--color-neon-yellow) 0%, transparent 50%);
+  opacity: 0;
+  mix-blend-mode: screen;
+  animation: attract 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+.granular-attraction::after {
+  animation-delay: 1s;
+  inset: -20px;
+}
+
+@keyframes attract {
+  0% { transform: scale(1.2) rotate(0deg); opacity: 0; }
+  50% { opacity: 0.4; }
+  100% { transform: scale(0.5) rotate(180deg); opacity: 0; }
+}
+
+@keyframes zoomOut {
+  0% {
+    transform: scale(2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-zoom-out {
+  animation: zoomOut 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
